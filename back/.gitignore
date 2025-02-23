@@ -1,3 +1,7 @@
+.secrets
+mvnw
+mvnw.cmd
+Set-Secrets.ps1
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -12,6 +16,10 @@ target/
 .settings
 .springBeans
 .sts4-cache
+
+### logging ###
+/logs
+*.log
 
 ### IntelliJ IDEA ###
 .idea
@@ -31,3 +39,4 @@ build/
 
 ### VS Code ###
 .vscode/
+
