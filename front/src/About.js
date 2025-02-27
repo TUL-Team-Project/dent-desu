@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { CardColumns, Card, Button } from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
 const title = "Nasi specjaliści";
 
@@ -76,9 +76,9 @@ class About extends Component {
     return (
       <div>
         <Title>{title}</Title>
-        <CardColumns style={{ margin: '3rem' }}>
+        <Card style={{ margin: '3rem' }}>
           <DoctorsList doctorData={this.state.doctors} />
-        </CardColumns>
+        </Card>
       </div>
     )
   }

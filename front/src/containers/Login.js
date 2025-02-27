@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import React, {Component} from "react";
+import {Button, FormControl, FormGroup, FormLabel} from "react-bootstrap";
 import styled from 'styled-components';
-import { useHistory } from "react-router-dom";
-import { instanceOf } from "prop-types";
 
-import { APIS } from '../config';
-import { authHeader } from '../helpers';
+import {APIS} from '../config';
+import {authHeader} from '../helpers';
 
 const title = "Zaloguj się";
 
@@ -25,7 +23,7 @@ const Styles = styled.div`
     background: #12736C !important;
     color: white !important;
     margin: 0 auto !important;
-    padding 0 !important;
+    padding: 0 !important;
     font-size: 1em !important;
     border: 2px solid #12736C !important;
     border-radius: 3px !important;
@@ -35,7 +33,7 @@ const Styles = styled.div`
     background: #4da29a !important;
     color: white !important;
     margin: 0 auto !important;
-    padding 0 !important;
+    padding: 0 !important;
     font-size: 1em !important;
     border: 2px solid #4da29a !important;
     border-radius: 3px; !important;
@@ -76,7 +74,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     let user = this.state.email + ':' + this.state.password;
-    var encodedData = btoa(user);
+    const encodedData = btoa(user);
     localStorage.setItem('user', encodedData);
 
     fetch(APIS.login, authHeader())
@@ -135,7 +133,7 @@ class Login extends Component {
           <div className="Login">
             <form onSubmit={this.handleSubmit}>
               <FormGroup controlId="email">
-                <FormLabel>Email</FormLabel>
+                <FormLabel column={"sm"}>Email</FormLabel>
                 <FormControl
                   autoFocus
                   type="email"
@@ -144,7 +142,7 @@ class Login extends Component {
                 />
               </FormGroup>
               <FormGroup controlId="password">
-                <FormLabel>Hasło</FormLabel>
+                <FormLabel column={"sm"}>Hasło</FormLabel>
                 <FormControl
                   value={this.state.password}
                   onChange={this.handlePasswordChange}

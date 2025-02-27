@@ -36,7 +36,6 @@ server:
 logging:
   level:
     org.springframework.security: DEBUG
-    thymeleaf: DEBUG
     org.hibernate: DEBUG
 frontend:
   url: http://localhost:3000

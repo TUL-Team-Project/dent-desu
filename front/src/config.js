@@ -1,24 +1,26 @@
+const BASE_URL_PROD = "https://api.plusmed.cloud";
+const BASE_URL_DEV = "https://localhost:8081";
 export const APIS = {
-  getDoctors: 'https://api.plusmed.cloud/getDoctors',
-  signUp: 'https://api.plusmed.cloud/signUp',
-  login: 'https://api.plusmed.cloud/signIn',
+  getDoctors: `${BASE_URL_DEV}/getDoctors`,
+  signUp: `${BASE_URL_DEV}/signUp`,
+  login: `${BASE_URL_DEV}/signIn`,
   
   doctor: {
-    allMyAppointments: 'https://api.plusmed.cloud/doctor/getAllMyAppointments?id=',
-    getMyUsers: 'https://api.plusmed.cloud/doctor/getMyUsers?id='
+    allMyAppointments: `${BASE_URL_DEV}/doctor/getAllMyAppointments?id=`,
+    getMyUsers: `${BASE_URL_DEV}/doctor/getMyUsers?id=`
   },
   user: {
-    bookAppointment: 'https://api.plusmed.cloud/user/bookAppointment',
-    allDoctorAppointments: 'https://api.plusmed.cloud/user/getAllDoctorAppointments?id=',
-    pastVisits: 'https://api.plusmed.cloud/user/getMyPastAppointments/?id=',
-    futureVisits: 'https://api.plusmed.cloud/user/getMyFutureAppointments/?id='
+    bookAppointment: `${BASE_URL_DEV}/user/bookAppointment`,
+    allDoctorAppointments: `${BASE_URL_DEV}/user/getAllDoctorAppointments?id=`,
+    pastVisits: `${BASE_URL_DEV}/user/getMyPastAppointments/?id=`,
+    futureVisits: `${BASE_URL_DEV}/user/getMyFutureAppointments/?id=`
   },
   reception: {
-    allDoctorAppointments: 'https://api.plusmed.cloud/reception/getAllDoctorAppointments?id=',
-    getAllUsers: 'https://api.plusmed.cloud/reception/getAllUsers'
+    allDoctorAppointments: `${BASE_URL_DEV}/reception/getAllDoctorAppointments?id=`,
+    getAllUsers: `${BASE_URL_DEV}/reception/getAllUsers`
   },
 }
 
 // export function hello() {
-//   console.log('hello')
+//   console.log(`hello`)
 // }

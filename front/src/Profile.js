@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CardColumns, Card, ListGroup, ListGroupItem, Button, Alert, Col, Image, Table } from "react-bootstrap";
 
@@ -189,7 +189,7 @@ class Profile extends Component {
   render() {
     if (!this.person) {
       return (
-        <Redirect to="/login" />
+        <Navigate to="/login" />
       );
     }
 
