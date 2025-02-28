@@ -1,7 +1,8 @@
 import React from 'react';
+import { Button, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar, Button, Image } from 'react-bootstrap';
 import styled from 'styled-components';
+import { ReactComponent as Logo } from '../assets/plus.svg';
 
 const loginApi = 'https://api.plusmed.cloud/signIn'
 
@@ -90,13 +91,9 @@ export const NavigationBarDoctor = ({ userData, history }) => {
       <Navbar fixed="top" expand="lg" bg="dark" variant="dark">
         <Link to="/">
           <Navbar.Brand>
-            <img
-              alt=""
-              src={require('../assets/plus.svg')}
+            <Logo 
               width="30"
-              height="30"
-              class="img-responsive"
-            ></img>{' '}
+              height="30"/>{' '}
             PlusMed
           </Navbar.Brand>
         </Link>

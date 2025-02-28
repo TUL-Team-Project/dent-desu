@@ -1,5 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deploying docker
+
+Build image
+```bash
+docker build -t plusmedfront:latest -f Dockerfile .
+```
+
+Run image:
+```bash
+docker run -it -p 8080:80 plusmedfront:latest
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

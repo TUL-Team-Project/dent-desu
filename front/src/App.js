@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import Home from './Home';
+import Cookies from 'universal-cookie';
 import About from './About';
-import PriceList from './PriceList';
-import Offer from './Offer';
+import Account from './Account';
+import { AppContainer } from './App.styled';
+import CalendarDoctor from './CalendarDoctor';
+import CalendarReception from './CalendarReception';
 import Contact from './Contact';
+import EditPatient from './EditPatient';
+import Home from './Home';
 import NoMatch from './NoMatch';
+import Offer from './Offer';
+import Patients from './Patients';
+import Prescriptions from './Prescriptions';
+import PriceList from './PriceList';
+import Profile from './Profile';
+import Referrals from './Referrals';
+import SetVisit from './SetVisit';
+import Visits from './Visits';
 import Layout from './components/Layout';
 import NavigationBar from './components/NavigationBar';
+import NavigationBarDoctor from './components/NavigationBarDoctor';
 import NavigationBarLogged from './components/NavigationBarLogged';
 import NavigationBarReception from './components/NavigationBarReception';
-import NavigationBarDoctor from './components/NavigationBarDoctor';
 import Login from './containers/Login';
-import Account from './Account';
-import Visits from './Visits';
-import SetVisit from './SetVisit';
-import Profile from './Profile';
-import Prescriptions from './Prescriptions';
-import Referrals from './Referrals';
-import Patients from './Patients';
-import EditPatient from './EditPatient';
-import CalendarReception from './CalendarReception';
-import CalendarDoctor from './CalendarDoctor';
-import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
@@ -77,35 +77,37 @@ class App extends Component {
 
   render() {
     return (
-        <Container>
-          <BrowserRouter>
-            {/* Use the NavigationWrapper to pass navigate */}
-            <NavigationWrapper>
-              {(navigate) => this.renderNavBar(navigate)}
-            </NavigationWrapper>
-            <Layout>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/priceList" element={<PriceList />} />
-                <Route path="/offer" element={<Offer />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/visits" element={<Visits />} />
-                <Route path="/account" element={<Account />} />
-                <Route path="/setvisit" element={<SetVisit />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/prescriptions" element={<Prescriptions />} />
-                <Route path="/referrals" element={<Referrals />} />
-                <Route path="/patients" element={<Patients />} />
-                <Route path="/editPatient" element={<EditPatient />} />
-                <Route path="/calendarReception" element={<CalendarReception />} />
-                <Route path="/calendarDoctor" element={<CalendarDoctor />} />
-                <Route path="*" element={<NoMatch />} />
-              </Routes>
-            </Layout>
-          </BrowserRouter>
-        </Container>
+      <AppContainer>
+          <Container>
+            <BrowserRouter>
+              {/* Use the NavigationWrapper to pass navigate */}
+              <NavigationWrapper>
+                {(navigate) => this.renderNavBar(navigate)}
+              </NavigationWrapper>
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/priceList" element={<PriceList />} />
+                  <Route path="/offer" element={<Offer />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/visits" element={<Visits />} />
+                  <Route path="/account" element={<Account />} />
+                  <Route path="/setvisit" element={<SetVisit />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/prescriptions" element={<Prescriptions />} />
+                  <Route path="/referrals" element={<Referrals />} />
+                  <Route path="/patients" element={<Patients />} />
+                  <Route path="/editPatient" element={<EditPatient />} />
+                  <Route path="/calendarReception" element={<CalendarReception />} />
+                  <Route path="/calendarDoctor" element={<CalendarDoctor />} />
+                  <Route path="*" element={<NoMatch />} />
+                </Routes>
+              </Layout>
+            </BrowserRouter>
+          </Container>
+        </AppContainer>
     );
   }
 }

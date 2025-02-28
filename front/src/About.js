@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Card } from "react-bootstrap";
 import styled from 'styled-components';
-import {Card} from "react-bootstrap";
+import { APIS } from './config';
 
 const title = "Nasi specjaliści";
 
@@ -13,10 +14,6 @@ const Title = styled.h1`
 `;
 
 const docPub = 'images/doctors/'
-
-const getDoctorsFromAPI = 'https://api.plusmed.cloud/getDoctors'
-// const getDoctorsFromAPI = 'http://localhost:8080/getDoctors'
-
 
 class DoctorCard extends Component {
 
@@ -66,7 +63,7 @@ class About extends Component {
   }
 
   componentDidMount() {
-    fetch(getDoctorsFromAPI)
+    fetch(APIS.getDoctors)
       .then(response => response.json())
       .then(json => this.setState({ doctors: json }));
   }

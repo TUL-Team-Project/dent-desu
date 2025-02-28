@@ -12,6 +12,22 @@ services:
       - "5432:5432"  # Map the container's port 5432 to the host's port 5454
     volumes:
       - postgres_data:/var/lib/postgresql/data  # Persist the PostgreSQL data
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username=clinic", "--dbname=dev"]
+      timeout: 5s
+      retries: 5
+  app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SECRETS_JWT_KEY: secret
+      POSTGRES_URL: postgres_db:5432
+    depends_on:
+      postgres_db:
+        condition: service_healthy
 
 volumes:
   postgres_data:
