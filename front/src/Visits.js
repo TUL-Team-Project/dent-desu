@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Button, Card, Image } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { CardColumns, Card, ListGroup, ListGroupItem, Button, Alert, Col, Image } from "react-bootstrap";
 
+import { Checkout } from './components/Payments/Checkout';
 import { APIS } from './config';
 import { authHeader } from './helpers';
 
@@ -67,6 +68,9 @@ class VisitCard extends Component {
             </BoxR>
           </BoxL>
           <BoxR>
+            { !this.props.done && (
+              <Checkout price={this.props.price} name={`${this.props.name} ${this.props.surname}`} appointmentId={this.props.appointmentId}/>
+            )}
           </BoxR>
         </Card.Body>
       </Card>
@@ -112,6 +116,7 @@ class VisitsList extends React.Component {
               speciality={visitData.doctor.specialization}
               visitDiagnosis={visitData.diagnosis}
               price={visitData.price}
+              appointmentId={visitData.appointmentID}
               done={this.props.done}
             />
           )

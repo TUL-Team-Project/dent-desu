@@ -2,7 +2,7 @@ spring:
   application:
     name: 'EcoDom'
   datasource:
-    url: jdbc:postgresql://localhost:5432/dev
+    url: jdbc:postgresql://${POSTGRES_URL}/dev
     driverClassName: org.postgresql.Driver
     username: clinic
     password: admin

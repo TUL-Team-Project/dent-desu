@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Button, Card, Form, FormControl, Image, InputGroup, Table } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import generator from 'generate-password';
-import { Card, InputGroup, Button, Image, Form, FormControl, Table } from "react-bootstrap";
 import { APIS } from './config';
-import { authHeader } from './helpers';
-import { useHistory } from "react-router-dom";
 
 const title = "Dodawanie pacjenta";
 
@@ -121,11 +118,7 @@ class EditPatient extends Component {
 
   generatePassword(event) {
     this.setState({
-      password: generator.generate({
-        length: 4,
-        numbers: false,
-        uppercase: false
-      })
+      password: 'test'
     });
     event.preventDefault();
   }
