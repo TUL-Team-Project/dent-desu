@@ -1,20 +1,13 @@
-import React, { Component, Children } from 'react'
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import "./calendarStyle.scss";
-import { Dropdown, FormControl } from "react-bootstrap";
+import moment from 'moment';
+import React, { Component } from 'react';
 import {
   Calendar,
-  DateLocalizer,
   momentLocalizer,
-  globalizeLocalizer,
-  move,
   Views,
-  Navigate,
-  components,
-} from 'react-big-calendar'
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+} from 'react-big-calendar';
+import styled from 'styled-components';
+import { CalendarContainer } from './Calendar/Calendar.styled';
+import "./calendarStyle.scss";
 import { APIS } from './config';
 import { authHeader } from './helpers';
 
@@ -157,19 +150,21 @@ class CalendarDoctor extends Component {
     return (
       <div>
         <Title>{title}</Title>
-        <Calendar
-          localizer={localizer}
-          defaultView={Views.WEEK}
-          selectable
-          views={{ week: true }}
-          events={this.state.appointments}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ marginLeft: '5%', marginRight: '5%', height: 1200, }}
-          onSelectEvent={event => alert(event.title)}
-          onSelectSlot={this.handleSelect}
-          components={calComponents}
-        />
+        <CalendarContainer>
+          <Calendar
+            localizer={localizer}
+            defaultView={Views.WEEK}
+            selectable
+            views={{ week: true }}
+            events={this.state.appointments}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ marginLeft: '5%', marginRight: '5%', height: 1200, }}
+            onSelectEvent={event => alert(event.title)}
+            onSelectSlot={this.handleSelect}
+            components={calComponents}
+            />
+          </CalendarContainer>
       </div>
     )
   }

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, Button, Image } from 'react-bootstrap';
+import { Button, Image, Nav, Navbar } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
-const loginApi = 'https://api.plusmed.cloud/signIn'
 
 const Styles = styled.div`
   .navbar {
@@ -72,15 +70,16 @@ const Name = styled.h1`
 
 // todo img 
 
-export const NavigationBarReception = ({ userData, history }) => {
+export const NavigationBarReception = ({ userData }) => {
   const docPub = 'images/doctors/'; // FIXME do zmiany
   let name = userData.name + ' ' + userData.surname;
   let avatar = userData.avatarPath;
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     localStorage.removeItem('user');
     localStorage.removeItem('userData');
-    history.push('/');
+    navigate('/');
     event.preventDefault();
   }
 

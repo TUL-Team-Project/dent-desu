@@ -20,7 +20,7 @@ export const Checkout = ({
     useEffect(() => {
         (async () => {
             const response = await checkStatus({ appointmentId });
-            setTransactionStatus(response.status);
+            setTransactionStatus(response?.status || 'NOT_FOUND');
         }
         )();
     }, []);

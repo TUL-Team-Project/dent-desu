@@ -1,5 +1,37 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Development
+
+Copy the `.env.example` file to `.env` and set the environment variables.
+
+```bash
+cp .env.example .env
+```
+
+Set proper values for the environment variables in the `.env` file.
+
+Locally `REACT_APP_BASE_URL` always should be set to `http://localhost:3000` to avoid CORS issues and SSL problems.
+
+```
+REACT_APP_BASE_URL=http://localhost:3000
+```
+
+To pass requests to the backend, you can use the `proxy` field in the `package.json` file. For local backend:
+
+```json
+{
+  "proxy": "http://localhost:8000"
+}
+```
+
+or for remote backend:
+
+```json
+{
+  "proxy": "https://api.plusmed.cloud:60443"
+}
+``` 
+
 ## Deploying docker
 
 Build image

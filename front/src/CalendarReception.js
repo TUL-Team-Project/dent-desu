@@ -1,19 +1,14 @@
-import React, { Component, Children } from 'react'
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Dropdown, FormControl } from "react-bootstrap";
+import React, { Component } from 'react';
+
+import moment from 'moment';
 import {
   Calendar,
-  DateLocalizer,
   momentLocalizer,
-  globalizeLocalizer,
-  move,
-  Views,
-  Navigate,
-  components,
-} from 'react-big-calendar'
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+  Views
+} from 'react-big-calendar';
+import { Dropdown, FormControl } from "react-bootstrap";
+import styled from 'styled-components';
+import { CalendarContainer } from './Calendar/Calendar.styled';
 import { APIS } from './config';
 import { authHeader } from './helpers';
 
@@ -203,20 +198,22 @@ class CalendarReception extends Component {
            </Dropdown.Menu>
         </Dropdown>
         <Subtitle style={{ marginBottom: '3rem' }}>{sub_calendar}</Subtitle>
-        <Calendar
-          localizer={localizer}
-          defaultView={Views.WEEK}
-          // defaultDate = {new Date(2020,9,14)}
-          selectable
-          views={{ week: true }}
-          events={this.state.appointments}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ marginLeft: '5%', marginRight: '5%', height: 1200, }}
-          onSelectEvent={event => alert(event.title)}
-          onSelectSlot={this.handleSelect}
-          components={calComponents}
-        />
+        <CalendarContainer>
+          <Calendar
+            localizer={localizer}
+            defaultView={Views.WEEK}
+            // defaultDate = {new Date(2020,9,14)}
+            selectable
+            views={{ week: true }}
+            events={this.state.appointments}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ marginLeft: '5%', marginRight: '5%', height: 1200, }}
+            onSelectEvent={event => alert(event.title)}
+            onSelectSlot={this.handleSelect}
+            components={calComponents}
+            />
+          </CalendarContainer>
       </div>
     )
   }

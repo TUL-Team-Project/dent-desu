@@ -1,10 +1,8 @@
 import React from 'react';
 import { Button, Image, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../assets/plus.svg';
-
-const loginApi = 'https://api.plusmed.cloud/signIn'
 
 const Styles = styled.div`
   .navbar {
@@ -72,7 +70,9 @@ const Name = styled.h1`
 `;
 
 
-export const NavigationBarDoctor = ({ userData, history }) => {
+export const NavigationBarDoctor = ({ userData }) => {
+
+  const navigate = useNavigate();
 
   const docPub = 'images/doctors/';
 
@@ -82,7 +82,7 @@ export const NavigationBarDoctor = ({ userData, history }) => {
   function handleSubmit(event) {
     localStorage.removeItem('user');
     localStorage.removeItem('userData');
-    history.push('/');
+    navigate.push('/');
     event.preventDefault();
   }
 
