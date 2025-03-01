@@ -1,7 +1,7 @@
-import React, { Component, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { Component, useEffect, useState } from 'react';
+import { Button, Dropdown, FormControl, Modal } from "react-bootstrap";
 import styled from 'styled-components';
-import { Dropdown, FormControl, Modal, setShow, Button } from "react-bootstrap";
+import { CalendarContainer } from './Calendar/Calendar.styled';
 import { APIS } from './config';
 import { authHeader } from './helpers';
 
@@ -9,7 +9,7 @@ import {
   Calendar,
   momentLocalizer,
   Views
-} from 'react-big-calendar'
+} from 'react-big-calendar';
 
 import moment from 'moment';
 import 'moment/locale/pl';
@@ -240,16 +240,18 @@ class DoctorCalendar extends Component {
 
         <Subtitle>{sub_calendar}</Subtitle>
 
-        <Calendar 
-          localizer={localizer}
-          events={this.props.events}
-          startAccessor="start"
-          endAccessor="end"
-          defaultView={Views.WEEK}
-          views={{ week: true }}
-          selectable
-          onSelectSlot={this.handleSelect.bind(this)}
-        />
+        <CalendarContainer>
+          <Calendar 
+            localizer={localizer}
+            events={this.props.events}
+            startAccessor="start"
+            endAccessor="end"
+            defaultView={Views.WEEK}
+            views={{ week: true }}
+            selectable
+            onSelectSlot={this.handleSelect.bind(this)}
+            />
+          </CalendarContainer>
       </div>
     )
   }

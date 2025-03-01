@@ -1,9 +1,10 @@
-import React, {Component} from "react";
-import {Button, FormControl, FormGroup, FormLabel} from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {APIS} from '../config';
-import {authHeader} from '../helpers';
+import { APIS } from '../config';
+import { authHeader } from '../helpers';
 
 const title = "Zaloguj się";
 
@@ -52,40 +53,68 @@ const Title = styled.h1`
   margin-bottom: 2em;
 `;
 
-class Login extends Component {
+export const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      loginStatus: 0,
-      body: JSON.parse(localStorage.getItem('userData'))
-    };
+ const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   }
 
-  handleEmailChange = (event) => {
-    this.setState({ email: event.target.value });
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   }
 
-  handlePasswordChange = (event) => {
-    this.setState({ password: event.target.value });
+  
+
+  const redirectToAccount = (userData) => {
+    console.log(userData);
+    if (userData === null) {
+      navigate('/login');
+    } else {
+      switch (userData.role) {
+        case 'doctor':
+          navigate('/profile');
+          break;
+        case 'reception':
+          navigate('/profile');
+          break;
+        case 'user':
+          navigate('/visits');
+          break;
+        default:
+          navigate('/login');
+      }
+    }
   }
 
-  handleSubmit(event) {
-    let user = this.state.email + ':' + this.state.password;
+  const setUserData = (response) => {
+    return response.json()
+      .then(json => {
+        localStorage.setItem('userData', JSON.stringify(json));
+        return json;
+      })
+      .then((user) => {
+        redirectToAccount(user);
+      });
+  }
+
+  const handleSubmit = (event) => {
+    let user = email + ':' + password;
     const encodedData = btoa(user);
     localStorage.setItem('user', encodedData);
 
     fetch(APIS.login, authHeader())
       .then(response => {
         if (response.status === 200) {
-          return this.setUserData(response);
+          return setUserData(response);
         } else {
           alert('Błędne dane logowania!');
           localStorage.removeItem('user');
           localStorage.removeItem('userData');
-          this.setState({ email: '', password: '' });
+          setEmail('');
+          setPassword('');
         }
       })
       .catch(error => console.log('error', error));
@@ -93,63 +122,31 @@ class Login extends Component {
     event.preventDefault();
   }
 
-  setUserData(response) {
-    return response.json()
-      .then(json => {
-        localStorage.setItem('userData', JSON.stringify(json));
-      })
-      .then(() => {
-        this.redirectToAccount();
-      });
-  }
 
-  redirectToAccount() {
-    const { history } = this.props;
-    let userData = JSON.parse(localStorage.getItem('userData'));
-    if (userData === null) {
-      if (history) history.push('/login');
-    } else {
-      switch (userData.role) {
-        case 'doctor':
-          if (history) history.push('/profile');
-          break;
-        case 'reception':
-          if (history) history.push('/profile');
-          break;
-        case 'user':
-          if (history) history.push('/visits');
-          break;
-        default:
-          if (history) history.push('/login');
-      }
-    }
-  }
-
-  render() {
     return (
       <>
         <Title>{title}</Title>
         <Styles>
           <div className="Login">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <FormGroup controlId="email">
                 <FormLabel column={"sm"}>Email</FormLabel>
                 <FormControl
                   autoFocus
                   type="email"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange}
+                  value={email}
+                  onChange={handleEmailChange}
                 />
               </FormGroup>
               <FormGroup controlId="password">
                 <FormLabel column={"sm"}>Hasło</FormLabel>
                 <FormControl
-                  value={this.state.password}
-                  onChange={this.handlePasswordChange}
+                  value={password}
+                  onChange={handlePasswordChange}
                   type="password"
                 />
               </FormGroup>
-              <Button block bsSize="large" type="submit" onClick={this.handleSubmit.bind(this)}>
+              <Button block bsSize="large" type="submit" onClick={handleSubmit}>
                 Login
             </Button>
             </form>
@@ -157,7 +154,7 @@ class Login extends Component {
         </Styles>
       </>
     );
-  }
+  
 }
 
 export default Login;
